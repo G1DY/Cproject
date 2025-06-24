@@ -236,6 +236,7 @@ int raiseargerrornotnullterminatedbuffer(char *bufbegin, int bufsize)
 		printf("Buffer is not null terminated\n");
 		return (1);
 	}
+	return (0);
 }
 
 /**
@@ -298,7 +299,7 @@ int raiseargerrornotnullterminatedtwopointedbuf(char *str,
 		printf("strlocterm points before str strlocbegin\n");
 		return (1);
 	}
-	if (str + strl < strlocterm)
+	if ((str + strl - 1) < strlocterm)
 	{
 		printf("raiseargerrornotnullterminatedtwopointedbuf: ");
 		printf("strlocterm points after str ending null character\n");
@@ -314,7 +315,8 @@ int raiseargerrornotnullterminatedtwopointedbuf(char *str,
  * @strfirst: Pointer to first character in target substring
  * @strlast: Pointer to last character in target substring
  * @testr: Pointer to int storing result (1 if balanced, 0 otherwise)
- * Return: 1 on input error, 0 on success
+ * Return: 1 if input is invalid (e.g., out of bounds, nulls), 0 otherwise
+ * 		   Sets *testr to 1 if balanced, 0 if unbalanced.
  */
 int strcheckparenthsbal(char *str, int bufsize, char *strfirst,
 	char *strlast, int *testr)
@@ -346,7 +348,7 @@ int strcheckparenthsbal(char *str, int bufsize, char *strfirst,
 		strfirst++;
 
 	}
-	/*if balance is 0 out of loop, we have a closing bracket after opening*/
+	/*After loop if balance=0, test is successful*/
 	if (balance == 0)
 	{
 		*testr = 1;
