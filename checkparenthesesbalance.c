@@ -320,5 +320,40 @@ int strcheckparenthsbal(char *str, int bufsize, char *strfirst,
 	char *strlast, int *testr)
 
 {
+	int balance = 0;
 
+	/*Check that the string is valid*/
+	if (raiseargerrornotnullterminatedtwopointedbuf(str, bufsize, strfirst,
+		 strlast))
+	{
+		printf("strcheckparenthsbal: input error\n");
+		return (1);
+	}
+
+	while (strfirst <= strlast)
+	{
+		if (*strfirst == '(')
+		balance++;
+		else if (*strfirst == ')')
+		balance--;
+
+		/*if closing parenthesis comes before opening, it is unbalanced*/
+		if (balance < 0)
+		{
+			*testr = 0;
+			return (0);
+		}
+		strfirst++;
+
+	}
+	/*if balance is 0 out of loop, we have a closing bracket after opening*/
+	if (balance == 0)
+	{
+		*testr = 1;
+	}
+	else
+	{
+		*testr = 0;
+	}
+	return (0);
 }
