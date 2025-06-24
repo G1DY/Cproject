@@ -18,11 +18,11 @@ char *strfirst, char *strlast, int *testr);
 
 char testbuf[500] = "(x^2)+(8*x^3)-x";
 
-int main(int argc, char *argv[])
 /**
  * main- programs entry point
  * Return: 0 on success and 1 on argument error
  */
+int main(int argc, char *argv[])
 {
 	int balanced;
 
@@ -36,14 +36,14 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-
-void pointernullcheck(char *pointer, int *nullpointer)
 /**
  * A function that checks if a given pointer is null
  * @pointer: the pointer to check
  * @nullpointer: pointer to int where result is stored
  * Return: 1 if null, 0 otherwise
  */
+void pointernullcheck(char *pointer, int *nullpointer)
+
 {
 	if (pointer == NULL)
 	{
@@ -55,12 +55,13 @@ void pointernullcheck(char *pointer, int *nullpointer)
 	}
 }
 
-int raiseargeorrornullpointer(char *pointer)
 /**
  * A function that raises error if pointer is null
  * @pointer: pointer to validate
  * Return: 1 if NULL, 0 otherwise
  */
+int raiseargeorrornullpointer(char *pointer)
+
 {
 	int nullpointer;
 
@@ -77,12 +78,13 @@ int raiseargeorrornullpointer(char *pointer)
 	}
 }
 
-int raiseargeorrornulldpointer(char **pointer)
 /**
  * A function that checks if double pointer is NULL
  * @pointer: pointer to a pointer to validate
  * Return: 1 if NULL, 0 otherwise
  */
+int raiseargeorrornulldpointer(char **pointer)
+
 {
 	int nullpointer;
 
@@ -97,12 +99,13 @@ int raiseargeorrornulldpointer(char **pointer)
 	}
 }
 
-int raiseargerrornegativeint(int value)
 /**
  * A function that Raises error if integer is negative
  * @value: interger to check
  * Return: 1 if negative, 0 otherwise
  */
+int raiseargerrornegativeint(int value)
+
 {
 	if (value < 0)
 	{
@@ -115,12 +118,13 @@ int raiseargerrornegativeint(int value)
 	}
 }
 
-int raiseargerrornotpositiveint(int value)
 /**
  * A function that raises error if int is 0 or negative
  * @value: integer to check
  * Return: 1 if not positive, 0 otherwise
  */
+int raiseargerrornotpositiveint(int value)
+
 {
 	if (value <= 0)
 	{
@@ -133,13 +137,14 @@ int raiseargerrornotpositiveint(int value)
 	}
 }
 
-void grthanzerocheck(int number, int *greaterthanzero)
 /**
  * A function that checks if a number is > than 0
  * @number: Number to check
  * @greaterthanzero: pointer to result
  * Return: 1 if true, else 0
  */
+void grthanzerocheck(int number, int *greaterthanzero)
+
 {
 	if (number > 0)
 	{
@@ -151,13 +156,14 @@ void grthanzerocheck(int number, int *greaterthanzero)
 	}
 }
 
-int raiseargeorrornotegrthanzerobuf(char *bufbegin, int bufsize)
 /**
  * A function that checks if buffer is valid and size > 0
  * @bufbegin: Buffer pointer
  * @bufsize: Buffer size in bytes
  * Return: 1 on error, 0 otherwise
  */
+int raiseargeorrornotegrthanzerobuf(char *bufbegin, int bufsize)
+
 {
 	if (raiseargeorrornullpointer(bufbegin))
 	{
@@ -176,8 +182,6 @@ int raiseargeorrornotegrthanzerobuf(char *bufbegin, int bufsize)
 	return (0);
 }
 
-int bufchecknullterminated(char *bufbegin, int bufsize,
-	int *bufnullterminated)
 /**
  * A function that verifies if a buffer is null-terminated
  * @bufbegin: Pointer to buffer start
@@ -185,6 +189,9 @@ int bufchecknullterminated(char *bufbegin, int bufsize,
  * @bufnullterminated: points to the result(1-null terminated, else 0)
  * Return: 1 on error, 0 if successful
  */
+int bufchecknullterminated(char *bufbegin, int bufsize,
+	int *bufnullterminated)
+
 {
 	if (raiseargeorrornotegrthanzerobuf(bufbegin, bufsize))
 	{
@@ -206,13 +213,14 @@ int bufchecknullterminated(char *bufbegin, int bufsize,
 	return (0);
 }
 
-int raiseargerrornotnullterminatedbuffer(char *bufbegin, int bufsize)
 /**
  * A function that verifies null termination of buffer
  * @bufbegin: start of the buffer
  * @bufsize: Size of the buffer
  * Return: 1 if not null-terminated or invalid, 0 otherwise
  */
+int raiseargerrornotnullterminatedbuffer(char *bufbegin, int bufsize)
+
 {
 	int bufnullterminated;
 
@@ -228,7 +236,6 @@ int raiseargerrornotnullterminatedbuffer(char *bufbegin, int bufsize)
 	}
 }
 
-int strlength(char *str, int bufsize, int *strl)
 /**
  * A function that computes string length if null-terminated
  * @str: the string to measure
@@ -236,6 +243,8 @@ int strlength(char *str, int bufsize, int *strl)
  * @strl: pointer to store string length
  * Return: 1 on error, 0 on success
  */
+int strlength(char *str, int bufsize, int *strl)
+
 {
 	if (raiseargerrornotnullterminatedbuffer(str, bufsize))
 	{
@@ -246,8 +255,6 @@ int strlength(char *str, int bufsize, int *strl)
 	return (0);
 }
 
-int raiseargerrornotnullterminatedtwopointedbuf(char *str,
-	int bufsize, char *strlocbegin, char *strlocterm)
 /**
  * A function that validates 2-pointer access
  * @str: Base buffer string
@@ -256,6 +263,9 @@ int raiseargerrornotnullterminatedtwopointedbuf(char *str,
  * @strlocterm: Ending location within buffer
  * Return: 1 on error, 0 otherwise
  */
+int raiseargerrornotnullterminatedtwopointedbuf(char *str,
+	int bufsize, char *strlocbegin, char *strlocterm)
+
 {
 	int strl;
 
@@ -295,8 +305,6 @@ int raiseargerrornotnullterminatedtwopointedbuf(char *str,
 	return (0);
 }
 
-int strcheckparenthsbal(char *str, int bufsize, char *strfirst,
-	char *strlast, int *testr)
 /**
  * A function that checks if parentheses are balanced in a substring
  * @str: full buffer
@@ -306,6 +314,9 @@ int strcheckparenthsbal(char *str, int bufsize, char *strfirst,
  * @testr: Pointer to int storing result (1 if balanced, 0 otherwise)
  * Return: 1 on input error, 0 on success
  */
+int strcheckparenthsbal(char *str, int bufsize, char *strfirst,
+	char *strlast, int *testr)
+
 {
 
 }
